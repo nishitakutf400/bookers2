@@ -1,0 +1,50 @@
+<div class=".container">
+<div class=".row">
+	<div class="col-lg-4">
+		<%= flash[:notice] %>
+		<% if book.errors.any? %>
+		<%= pluralize(book.errors.count,"error") %>
+    <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>
+		<h3>User info</h3>
+		<div><%= attachment_image_tag user,:profile_image,:fill, 100, 100, fallback: "no_image.jpg"%>
+    </div>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>name</th>
+					<th><%= user.name %></th>
+				</tr>
+				<th>introduction</th>
+				<th><%= user.introduction %></th>
+			</tbody>
+		</table>
+		<div class="row">
+			<%= link_to "", edit_user_path(user),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+		</div>
+
+		<h2>New Book</h2>
+
+	<%= form_for(book) do |f| %>
+		<div>
+			<h4>Title</h4>
+		    <%= f.text_field :title %>
+		</div>
+	 
+	    <div>
+	    	<h4>Opinion</h4>
+	    <%= f.text_area :body %>
+	    </div>
+
+	    <%= f.submit 'Create Book', class: "col-xs-12" %>
+
+
+	<% end %>
+	</div>
+</div>
+</div>
+

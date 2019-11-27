@@ -1,0 +1,25 @@
+<%= render 'books/list', book: @bookn, user: @user %>
+<div class="container">
+<div class="row">
+	<div class="col-lg-8">
+<h3>Book detail</h3>
+<table class="table">
+	<tbody>
+		<tr>
+			<td><%= attachment_image_tag @user, :profile_image,:fill, 70, 70, fallback: "no_image.jpg"%><br>
+			<%= link_to @user.name, user_path(@user) %>
+
+		</td>
+			<td><%= @book.title %></td>
+			<td><%=  @book.body %></td>
+			<% if current_user.id ==  @user.id %>
+			<td><%= link_to"Edit", edit_book_path(@book), class: "btn btn-success"
+			 %></td>
+			<td><%= link_to "destory", book_path(@book.id), method: :delete,"data-confirm" => "Are you sure?", class: "btn btn-danger" %></td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>
